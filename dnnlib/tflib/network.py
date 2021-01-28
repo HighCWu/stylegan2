@@ -523,7 +523,7 @@ class Network:
 
             # Report layer.
             layer_name = scope[len(self.scope) + 1:]
-            layer_output = cur_ops[-1].outputs[0] if cur_ops else cur_vars[-1][1]
+            layer_output = (None if len(cur_ops[-1].outputs) == 0 else cur_ops[-1].outputs[0]) if cur_ops else cur_vars[-1][1]
             layer_trainables = [var for _name, var in cur_vars if var.trainable]
             layers.append((layer_name, layer_output, layer_trainables))
 
